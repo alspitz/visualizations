@@ -133,6 +133,13 @@ plot_arrow_man(radius * z3, y3, normal=x2, length=0.08, color='red', zorder=8)
 
 # Plot x-axis projected onto horizontal plane.
 ax.plot([x3[0], x3[0]], [x3[1], x3[1]], [x3[2], x1[2]], color='black', linestyle='dashed')
+sq_len = 0.04
+p1 = np.array((x3[0], x3[1], x1[2])) + z0 * sq_len
+p2 = p1 + x1 * sq_len
+p3 = p2 - z0 * sq_len
+ps = [p1, p2, p3]
+for i in range(2):
+  ax.plot([ps[i][0], ps[i + 1][0]], [ps[i][1], ps[i + 1][1]], [ps[i][2], ps[i + 1][2]], color="black")
 
 ax.set_xlim((-1.0, 1.0))
 ax.set_ylim((-1.0, 1.0))
