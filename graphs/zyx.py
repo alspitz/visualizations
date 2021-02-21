@@ -9,9 +9,6 @@ from mpl_toolkits.mplot3d import proj3d
 
 from scipy.spatial.transform import Rotation as R
 
-from python_utils.mathu import e1, e2, e3
-from python_utils.plotu import set_3daxes_equal
-
 # Enable latex compatible font.
 matplotlib.rcParams['mathtext.fontset'] = 'cm'
 
@@ -38,13 +35,13 @@ fontsize = 18
 
 eulers = 'ZYX'
 
+# Generate axes.
 o = np.zeros(3)
 R1 = R.from_euler(eulers, [yaw, 0, 0])
 R2 = R.from_euler(eulers, [yaw, -pitch, 0])
 R3 = R.from_euler(eulers, [yaw, -pitch, -roll])
 
-fig = plt.figure(figsize=(16, 12))
-ax = plt.axes(projection='3d')
+e1, e2, e3 = np.eye(3)
 
 x0 = e1
 x1 = R1.apply(e1)
@@ -76,6 +73,9 @@ psets = [
   [x1, y2, z2],
   [x3, y3, z3]
 ]
+
+fig = plt.figure(figsize=(16, 12))
+ax = plt.axes(projection='3d')
 
 # Plot all axes.
 for style, pset in zip(styles, psets):
@@ -141,12 +141,13 @@ ax.set_zlim((-0.5, 1.0))
 ax.set_axis_off()
 
 plt.tight_layout()
+#from python_utils.plotu import set_3daxes_equal
 #set_3daxes_equal(ax)
 ax.elev = 44
 ax.azim = -99
 ax.dist = 6
 
 if args.save:
-  plt.savefig('out.pdf')
+  plt.savefig('euler_zyx.pdf')
 
 plt.show()
