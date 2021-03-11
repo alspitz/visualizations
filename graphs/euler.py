@@ -164,8 +164,8 @@ ps = [p1, p2, p3]
 for i in range(2):
   ax.plot([ps[i][0], ps[i + 1][0]], [ps[i][1], ps[i + 1][1]], [ps[i][2], ps[i + 1][2]], color="black")
 
-ax.set_xlim((-1.0, 1.0))
-ax.set_ylim((-1.0, 1.0))
+ax.set_xlim((-1.05, 1.05))
+ax.set_ylim((-1.05, 1.05))
 ax.set_zlim((-0.5, 1.0))
 ax.set_axis_off()
 plt.tight_layout()
